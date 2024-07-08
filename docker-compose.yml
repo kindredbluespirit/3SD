@@ -1,0 +1,61 @@
+# version: '3'
+
+# services:
+#   app:
+#     build: .
+#     command: python -m your_app_name.main
+#     volumes:
+#       - .:/app
+#     working_dir: /app
+#     depends_on:
+#       - pip
+#     environment:
+#       - PIP_USER=True
+
+#   pip:
+#     image: python:3.9-slim
+#     command: pip install -r requirements.txt
+
+#####################
+
+# version: '3'
+
+# services:
+#   3sd:
+#     build: .
+#     command: python -m main.py
+#     depends_on:
+#       - pytorch
+#     volumes:
+#       - .:/workspace
+#     environment:
+#       - REQUIREMENTS_FILE=requirements.txt
+#     image: pytorch/pytorch:2.3.0-cuda12.1-cudnn8-runtime
+
+#####################
+
+# version: '3'
+
+# # deploy: no
+
+# services:
+#   myapp:
+#     build: .
+#     image: pytorch/pytorch:2.3.0-cuda12.1-cudnn8-runtime
+#     volumes:
+#       - .:/app:delegated
+#     network_mode: "host"
+#     command: bash
+#     # command: cd /app && pip install -r requirements.txt
+
+#######################
+
+services:
+  myapp:
+    build: .
+    network_mode: "host"
+    volumes:
+      - .:/app:delegated
+    working_dir: /app
+    command: sleep inf
+    # tty: true
